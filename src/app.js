@@ -238,7 +238,7 @@ function requestListPath(path, params, resultCallback, authErrorCallback, retrie
 					askPassword(path);
 				} else if (res && res.data === null) {
 					document.getElementById('spinner').remove();
-					document.getElementById('list').innerHTML = `<div class='alert alert-danger' role='alert'> Server didn't send any data.</div></div></div>`;
+					document.getElementById('list').innerHTML = ``;
 					$('#update').hide();
 				} else if (res && res.data) {
 					resultCallback(res, path, requestData);
@@ -248,11 +248,11 @@ function requestListPath(path, params, resultCallback, authErrorCallback, retrie
 			.catch(function(error) {
 				if (retries > 0) {
 					sleep(2000);
-					document.getElementById('update').innerHTML = `<div class='alert alert-info' role='alert'> Retrying...</div></div></div>`;
+					document.getElementById('update').innerHTML = ``;
 					performRequest(path, requestData, resultCallback, authErrorCallback, retries - 1);
 				} else {
-					document.getElementById('update').innerHTML = `<div class='alert alert-danger' role='alert'> Unable to get data from the server. Something went wrong.</div></div></div>`;
-					document.getElementById('list').innerHTML = `<div class='alert alert-danger' role='alert'> We were unable to get data from the server. ` + error + `</div></div></div>`;
+					document.getElementById('update').innerHTML = ``;
+					document.getElementById('list').innerHTML = ``;
 					$('#update').hide();
 				}
 			});
