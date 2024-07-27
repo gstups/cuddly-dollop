@@ -293,7 +293,7 @@ function requestSearch(params, resultCallback, retries = 3) {
 			.then(function(res) {
 				if (res && res.data === null) {
 					$('#spinner').remove();
-					$('#list').html(`<div class='alert alert-danger' role='alert'> Server didn't send any data.</div></div></div>`);
+					$('#list').html(``);
 					$('#update').remove();
 				}
 				if (res && res.data) {
@@ -304,11 +304,11 @@ function requestSearch(params, resultCallback, retries = 3) {
 			.catch(function(error) {
 				if (retries > 0) {
 					sleep(2000);
-					$('#update').html(`<div class='alert alert-info' role='alert'> Retrying...</div></div></div>`);
+					$('#update').html(``);
 					performRequest(retries - 1);
 				} else {
-					$('#update').html(`<div class='alert alert-danger' role='alert'> Unable to get data from the server. Something went wrong. 3 Failures</div></div></div>`);
-					$('#list').html(`<div class='alert alert-danger' role='alert'> We were unable to get data from the server.</div></div></div>`);
+					$('#update').html(``);
+					$('#list').html(``);
 					$('#spinner').remove();
 				}
 			});
